@@ -3,21 +3,24 @@
 github.com/lizfischer -->
 <html lang="en">
 <head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+
 	<title>IIIF Crop</title>
-	<link rel="stylesheet" href="css/jquery.Jcrop.min.css">
+
+	<link rel="stylesheet" href="css/jquery.Jcrop.min.css"> <!-- required for jcrop to work right! -->
 	<link rel="stylesheet" href="css/main.css">
 	<link rel=stylesheet href="css/colors.css">
+
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.Jcrop.min.js"></script>
 	<script type="text/javascript" src="js/clipboard.min.js"></script>
 	<script type="text/javascript" src="js/cropper.js"></script>
-	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-
 </head>
 <body>
 	<div id="container">
 		<h1>IIIF Image Cropper</h1>
 		<p>A simple little tool to provide cropped <a href="http://www.iiif.io" target="_blank">IIIF</a> URLs. Input a valid IIIF image URL, then click and drag on the image to crop.</p>
+
 		<div id="fields">
 			<label for="URL">Input URL:</label>
 			<input type="text" id="URL" name="URL">
@@ -37,7 +40,7 @@ github.com/lizfischer -->
 			</script>
 		</div>
 
-
+		<!-- img placeholder -->
 		<img style="display:none" src="" id="target">
 	</div>
 
