@@ -18,7 +18,7 @@ $(document).ready(function(){
 		$('#target').Jcrop({
 			boxHeight:700,
 			onSelect: getURL,
-			onChange: getURL,
+			onChange: clearURL,
 			allowSelect: true,
 			allowMove: true,
 			allowResize: true
@@ -27,6 +27,9 @@ $(document).ready(function(){
 		});
 	});
 
+		function clearURL(){
+			$('#output').val("");
+		}
 	// Get the new URL from JCrop coordinates
 		function getURL(c){
 			var oldURL = $('#target').attr('src');
