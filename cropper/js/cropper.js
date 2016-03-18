@@ -2,6 +2,12 @@ $(document).ready(function(){
 
 	var jcrop_api = null;
 
+	$("#URL").keyup(function(event){
+		if(event.keyCode == 13){
+			$("#submit").click();
+		}
+	});
+
 	$('#submit').click(function(){
 		if (jcrop_api != null){
 			jcrop_api.destroy();
