@@ -10,8 +10,10 @@ github.com/lizfischer -->
 	<link rel="stylesheet" href="css/jquery.Jcrop.min.css"> <!-- required for jcrop to work right! -->
 	<link rel="stylesheet" href="css/main.css">
 	<link rel=stylesheet href="css/colors.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script type="text/javascript" src="js/jquery.Jcrop.min.js"></script>
 	<script type="text/javascript" src="js/clipboard.min.js"></script>
 	<script type="text/javascript" src="js/cropper.js"></script>
@@ -30,14 +32,12 @@ github.com/lizfischer -->
 			<input type="text" name="output" id="output" readonly>
 
 			<!-- Copy to clipboad -->
-			<button class="btn" id="copy" data-clipboard-target="#output">
-				<img src="assets/clippy.svg" alt="Copy to clipboard">
-			</button>
-			<script>
-				(function(){
-					new Clipboard('.btn');
-				})();
-			</script>
+			<div class="tooltip-wrap" id="copy-tip">
+				<button class="btn" id="copy" data-clipboard-target="#output">
+					<img src="assets/clippy.svg" alt="Copy to clipboard">
+				</button>
+				<div class="tooltip" id="copy-tip-text">Copied!</div>
+			</div>
 		</div>
 
 		<!-- img placeholder -->

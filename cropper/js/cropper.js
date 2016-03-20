@@ -19,6 +19,9 @@ $(document).ready(function(){
 		// This is also a workaround for a jcrop issue whereby it does not properly handle changing images and box constraints.
 		$('#target').removeAttr('style');
 
+		// Clear output box
+		$('#output').val('');
+
 		// Get input
 		var url = document.getElementById("URL").value;
 		// Display image
@@ -94,6 +97,21 @@ $(document).ready(function(){
 		}
 		return {'x':x, 'y':y, 'w':w, 'h':h}
 	}
+
+	/** CLIPBOARD **/
+
+	var clipboard = new Clipboard('.btn');
+
+	clipboard.on('success', function(e) {
+		console.log('Success');
+		$('#copy-tip-text').text('Copied!');
+		$('#copy-tip-text').fadeIn(300).delay(1000).fadeOut(300);
+	});
+
+	clipboard.on('error', function(e) {
+		$('#copy-tip-text').text('Ctrl+C to copy');
+		$('#copy-tip-text').fadeIn(300).delay(1000).fadeOut(300);
+	});
 
 
 });

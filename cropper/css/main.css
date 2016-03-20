@@ -72,3 +72,45 @@ input {
 }
 
 
+/**
+	Tooltip
+*/
+.tooltip-wrap {
+  color: #555;
+  cursor: help;
+  font-family: "Gill Sans", Impact, sans-serif;
+  font-size: 12px;
+	display: inline-block;
+  position: relative;
+  text-align: center;
+  -webkit-transform: translateZ(0); /* webkit flicker fix */
+  -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+}
+
+.tooltip-wrap .tooltip {
+	display: none;
+	position: absolute;
+	z-index: 1;
+	padding: 5px 8px;
+	top: 37px;
+	left: -50%;
+	background-color: #666;
+	color: white;
+	border-radius: 3px;
+}
+
+/* CSS Triangle */
+.tooltip-wrap .tooltip:after {
+	width: 0;
+	height: 0;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-bottom: 8px solid #666;
+	top: -8px;
+	content: " ";
+	height: 0;
+	left: 50%;
+	margin-left: -15%;
+	position: absolute;
+	width: 0;
+}
