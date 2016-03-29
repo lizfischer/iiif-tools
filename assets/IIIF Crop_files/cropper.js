@@ -2,6 +2,13 @@ $(document).ready(function(){
 
 	var jcrop_api = null;
 
+	/* Trigger URL submit with ENTER */
+	$("#URL").keyup(function(event){
+		if(event.keyCode == 13){
+			$("#submit").click();
+		}
+	});
+
 	/* When URL submitted... */
 	$('#submit').click(function(){
 		// If there was an instance of jcrop, start fresh it
