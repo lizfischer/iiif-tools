@@ -84,5 +84,3 @@ $(document).ready(function(){
         }
     });
 });
-
-//You might have a variety of interests involving killing people, and probability can apply to those too.
