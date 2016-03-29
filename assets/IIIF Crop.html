@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://localhost:63342/iiif-tools/cropper/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+
+	<title>IIIF Crop</title>
+
+	<link rel="stylesheet" href="./IIIF Crop_files/jquery.Jcrop.min.css"> <!-- required for jcrop to work right! -->
+	<link rel="stylesheet" href="./IIIF Crop_files/main.css">
+	<link rel="stylesheet" href="./IIIF Crop_files/colors.css">
+	<link rel="stylesheet" href="./IIIF Crop_files/jquery-ui.css">
+
+	<script type="text/javascript" src="./IIIF Crop_files/jquery.min.js"></script>
+	<script src="./IIIF Crop_files/jquery-ui.js"></script>
+	<script type="text/javascript" src="./IIIF Crop_files/jquery.Jcrop.min.js"></script>
+	<script type="text/javascript" src="./IIIF Crop_files/clipboard.min.js"></script>
+	<script type="text/javascript" src="./IIIF Crop_files/common.js"></script>
+	<script type="text/javascript" src="./IIIF Crop_files/cropper.js"></script>
+</head>
+<body style="zoom: 1;">
+	<div id="container">
+		<h1>IIIF Image Cropper</h1>
+		<p>A simple little tool to provide cropped <a href="http://www.iiif.io/" target="_blank">IIIF</a> URLs. Input a valid IIIF image URL, then click and drag on the image to crop.</p>
+
+		<div id="fields">
+			<label for="URL">Input URL:</label>
+			<input type="text" id="URL" name="URL">
+			<button type="button" id="submit">Load</button>
+
+			<label for="output">Cropped URL:</label>
+			<input type="text" name="output" id="output" readonly="">
+
+			<!-- Copy to clipboad -->
+			<div class="tooltip-wrap" id="copy-tip">
+				<button class="btn" id="copy" data-clipboard-target="#output">
+					<img src="./IIIF Crop_files/clippy.svg" alt="Copy to clipboard">
+				</button>
+				<div class="tooltip" id="copy-tip-text" style="display: none;">Copied!</div>
+			</div>
+		</div>
+
+		<!-- img placeholder -->
+		<img src="./IIIF Crop_files/default.png" id="target" style="display: none; visibility: hidden; width: 366px; height: 112px;"><div class="jcrop-holder" style="width: 366px; height: 112px; position: relative; background-color: rgb(0, 0, 0);"><div style="position: absolute; z-index: 600; width: 305px; height: 89px; top: 15px; left: 61px;"><div style="width: 100%; height: 100%; z-index: 310; position: absolute; overflow: hidden;"><img src="./IIIF Crop_files/default.png" style="border: none; visibility: visible; margin: 0px; padding: 0px; position: absolute; top: -15px; left: -61px; width: 366px; height: 112px;"><div class="jcrop-hline" style="position: absolute; opacity: 0.4;"></div><div class="jcrop-hline bottom" style="position: absolute; opacity: 0.4;"></div><div class="jcrop-vline right" style="position: absolute; opacity: 0.4;"></div><div class="jcrop-vline" style="position: absolute; opacity: 0.4;"></div><div class="jcrop-tracker" style="cursor: move; position: absolute; z-index: 360;"></div></div><div style="width: 100%; height: 100%; z-index: 320; display: block;"><div class="ord-n jcrop-dragbar" style="cursor: n-resize; position: absolute; z-index: 370;"></div><div class="ord-s jcrop-dragbar" style="cursor: s-resize; position: absolute; z-index: 371;"></div><div class="ord-e jcrop-dragbar" style="cursor: e-resize; position: absolute; z-index: 372;"></div><div class="ord-w jcrop-dragbar" style="cursor: w-resize; position: absolute; z-index: 373;"></div><div class="ord-n jcrop-handle" style="cursor: n-resize; position: absolute; z-index: 374; opacity: 0.5;"></div><div class="ord-s jcrop-handle" style="cursor: s-resize; position: absolute; z-index: 375; opacity: 0.5;"></div><div class="ord-e jcrop-handle" style="cursor: e-resize; position: absolute; z-index: 376; opacity: 0.5;"></div><div class="ord-w jcrop-handle" style="cursor: w-resize; position: absolute; z-index: 377; opacity: 0.5;"></div><div class="ord-nw jcrop-handle" style="cursor: nw-resize; position: absolute; z-index: 378; opacity: 0.5;"></div><div class="ord-ne jcrop-handle" style="cursor: ne-resize; position: absolute; z-index: 379; opacity: 0.5;"></div><div class="ord-se jcrop-handle" style="cursor: se-resize; position: absolute; z-index: 380; opacity: 0.5;"></div><div class="ord-sw jcrop-handle" style="cursor: sw-resize; position: absolute; z-index: 381; opacity: 0.5;"></div></div></div><div class="jcrop-tracker" style="width: 370px; height: 116px; position: absolute; top: -2px; left: -2px; z-index: 290; cursor: crosshair;"></div><input type="radio" class="jcrop-keymgr" style="position: fixed; left: -120px; width: 12px; display: none;"><img src="./IIIF Crop_files/default.png" style="display: block; visibility: visible; width: 366px; height: 112px; border: none; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; opacity: 0.6;"></div>
+	</div>
+
+	<div id="footer">
+		<a href="mailto:lizzy.m.fischer@gmail.com" target="_blank">Liz Fischer</a>, 2016.
+	</div>
+
+
+</body></html>
