@@ -12,6 +12,7 @@
 .mainTarget{position:absolute; height:200px;}
 
 #rotate-target{
+    display: none;
     position:absolute;
     height:20px;
     width:20px;

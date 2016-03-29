@@ -8,6 +8,7 @@ $(document).ready(function(){
     var deg = 0;
     var ref = false;
     var hasMoved = false;
+    var loaded = false;
     var target     = $('#rotate-target');
     var mainTarget = $('#mainTarget');
 
@@ -34,7 +35,8 @@ $(document).ready(function(){
         // Display image
         $('#target').attr("src", url);
         if (ref) $('#target').css({transform: 'scaleX(-1)'});
-        $('#mainTarget').show();
+        $('#rotate-target').show();
+        loaded = true;
     });
 
     /* Toggle Reflection */
@@ -56,20 +58,24 @@ $(document).ready(function(){
     var cent  = {X: mainTarget.width()/2, Y: mainTarget.height()/2};
     var elPos = {X: elOfs.left, Y: elOfs.top};
     target.mousedown(function() {
-        dragging = true;
-        if (!hasMoved) hasMoved = true;
-        $('#output').val('');
+        if (loaded) {
+            dragging = true;
+            if (!hasMoved) hasMoved = true;
+            $('#output').val('');
+        }
     });
     $(document).mouseup(function() {
-        dragging = false;
-        if (img != null){
-            var rot = Math.round(deg*100)/100;
-            if (rot < 0) rot = 360+rot;
-            var newURL = img.setRotation(rot, ref);
-            $('#output').val(newURL);
+        if (loaded){
+            dragging = false;
+            if (img != null){
+                var rot = Math.round(deg*100)/100;
+                if (rot < 0) rot = 360+rot;
+                var newURL = img.setRotation(rot, ref);
+                $('#output').val(newURL);
+            }
         }
     }).mousemove(function(e) {
-        if(dragging) {
+        if(loaded && dragging) {
             var mPos    = {X: e.pageX-elPos.X, Y: e.pageY-elPos.Y};
             var getAtan = Math.atan2(mPos.X-cent.X, mPos.Y-cent.Y);
             deg  = -getAtan/(Math.PI/180) + 135;
