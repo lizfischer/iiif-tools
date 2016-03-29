@@ -36,6 +36,7 @@ $(document).ready(function(){
         $('#target').attr("src", url);
         if (ref) $('#target').css({transform: 'scaleX(-1)'});
         $('#rotate-target').show();
+        $('.mainTarget').show();
         loaded = true;
     });
 

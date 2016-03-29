@@ -9,7 +9,7 @@
     user-select: none;
 }
 
-.mainTarget{position:absolute; height:200px;}
+.mainTarget{position:absolute; height:200px; display: none;}
 
 #rotate-target{
     display: none;
