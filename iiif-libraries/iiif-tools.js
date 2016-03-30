@@ -20,6 +20,7 @@ var IIIFimg = function (url){
 	this._region='full';
 	this._size='full';
 	this._rotation='0';
+	this._reflected='';
 	this._quality='default';
 	this._format='jpg';
 	this._info='';
@@ -35,6 +36,11 @@ var IIIFimg = function (url){
 	this._region = components[components.length-4];
 	this._size = components[components.length-3];
 	this._rotation = components[components.length-2];
+	if (this._rotation[0] == '!'){
+		var split = this._rotation.split('!');
+		this._rotation = split[1];
+		this._reflected = '!';
+	}
 	this._quality = components[components.length-1].split('.')[0];
 	this._format = components[components.length-1].split('.')[1];
 };
@@ -42,8 +48,9 @@ var IIIFimg = function (url){
 IIIFimg.prototype = (function() {
 	var update = function(img) {
 		img._info = img._scheme+"://"+[img._server, img._prefix, img._identifier, "info.json"].join("/");
+		if (img.isReflected()) rotation = '!' + img._rotation;
 		img._url = img._scheme+"://"+[img._server, img._prefix, img._identifier, img._region, img._size,
-				img._rotation, img._quality + "." + img._format].join("/");
+				img._reflected+img._rotation, img._quality + "." + img._format].join("/");
 	};
 
 	return {
@@ -56,6 +63,7 @@ IIIFimg.prototype = (function() {
 		getRegion:function () { return this._region; },
 		getSize:function () { return this._size; },
 		getRotation:function () { return this._rotation; },
+		isReflected:function () { return (this._reflected == '!'); },
 		getQuality:function () { return this._quality; },
 		getFormat:function () { return this._format; },
 		getInfo:function () { return this._info; },
@@ -123,11 +131,21 @@ IIIFimg.prototype = (function() {
 		 * @returns updated image URL
 		 */
 		setRotation:function (rot, ref) {
-			var newRotation = rot || "0";
-			if (ref) newRotation = "!" + newRotation;
-			this._rotation = newRotation;
+			this._rotation = rot || "0";
+
+			if (ref == true) {
+				this._reflected = '!';
+			} else if (ref == false) {
+				this._reflected = '';
+			}
+
 			update(this);
 			return this._url;
+		},
+
+		toggleReflection:function () {
+			if (this._reflected == '') this._reflected = '!';
+			else this._reflected = '';
 		},
 		/**
 		 *

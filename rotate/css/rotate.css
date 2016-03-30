@@ -1,25 +1,25 @@
 #mainTarget{
-    width:300px;
-    height:200px;
-    position:relative;
-    top:70px;
-    left:25%;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
+	width:300px;
+	height:200px;
+	position:relative;
+	top:70px;
+	left:25%;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 .mainTarget{position:absolute; height:200px; display: none;}
 
 #rotate-target{
-    display: none;
-    position:absolute;
-    height:20px;
-    width:20px;
-    background:url("../../assets/rotate-icon.gif") no-repeat top center #ffffff;
-    background-size:100%;
-    cursor:pointer;
-    z-index:1;
-    top:0;
-    right:0;
+	display: none;
+	position:absolute;
+	height:20px;
+	width:20px;
+	background:url("../img/rotate-icon.gif") no-repeat top center #ffffff;
+	background-size:100%;
+	cursor:pointer;
+	z-index:1;
+	top:0;
+	right:0;
 }
