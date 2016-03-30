@@ -7,17 +7,17 @@ github.com/lizfischer -->
 
 	<title>IIIF Rotate</title>
 
-	<link rel="stylesheet" href="../css/main.css">
-	<link rel=stylesheet href="../css/colors.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel=stylesheet href="css/colors.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet" href="css/rotate.css">
 
-	<script type="text/javascript" src="../js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script type="text/javascript" src="../js/clipboard.min.js"></script>
+	<script type="text/javascript" src="js/clipboard.min.js"></script>
 
-	<script src="../js/iiif-manipulate.js"></script>
-	<script src="../js/common.js"></script>
+	<script src="js/iiif-manipulate.js"></script>
+	<script src="js/common.js"></script>
 	<script src="js/rotate.js"></script>
 </head>
 <body>
@@ -30,15 +30,15 @@ github.com/lizfischer -->
 		<label for="URL">Input URL:</label>
 		<input type="text" id="URL" name="URL">
 		<button type="button" id="submit">Load</button>
-		<label for="ref">Reflect?</label><input type="checkbox" id="ref" name="ref">
+		<label for="ref">Reflected</label><input type="checkbox" id="ref" name="ref">
 
-		<label for="output">Cropped URL:</label>
+		<label for="output">Rotated URL:</label>
 		<input type="text" name="output" id="output" readonly>
 
 		<!-- Copy to clipboad -->
 		<div class="tooltip-wrap" id="copy-tip">
 			<button class="btn" id="copy" data-clipboard-target="#output">
-				<img src="../assets/clippy.svg" alt="Copy to clipboard">
+				<img src="img/clippy.svg" alt="Copy to clipboard">
 			</button>
 			<div class="tooltip" id="copy-tip-text">Copied!</div>
 		</div>
