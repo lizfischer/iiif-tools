@@ -1,4 +1,6 @@
 # iiif-tools
+All tools are all self-contained (i.e. each top-level tool folder includes all dependencies, and can be used separately). 
+
 ## Cropper
 Tool for selecting image regions and generating the proper IIIF URL.
 Live at https://stanford.edu/~efisch17/iiif-tools/cropper/ and http://dms-data.stanford.edu/data/iiif-tools/cropper/
