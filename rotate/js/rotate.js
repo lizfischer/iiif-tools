@@ -40,7 +40,6 @@ $(document).ready(function(){
 
 		// Reset object to initial rot and ref
 		img.setRotation(initialRotation, initialReflection);
-		console.log(initialReflection + " " + img.isReflected());
 		if (initialReflection){
 			$('#target').css({transform: 'scaleX(-1)'}); //reflect if img reflected
 			$("#ref").attr('checked', 'true');
@@ -48,8 +47,9 @@ $(document).ready(function(){
 			$('#target').css({transform: 'scaleX(1)'});
 			$("#ref").removeAttr('checked');
 		}
-
+		
 		deg = initialRotation;
+		ref = initialReflection;
 		mainTarget.css({transform: 'rotate(' + deg + 'deg)'});
 
 		// Display image
