@@ -6,11 +6,14 @@ $(document).ready(function(){
 	var img;
 	var dragging = false;
 	var deg = 0;
+	var ref = false;
 	var hasMoved = false;
 	var loaded = false;
 	var target     = $('#rotate-target');
 	var mainTarget = $('#mainTarget');
-
+	var initialRotation;
+	var initialReflection;
+	
 	/* When URL submitted... */
 	$('#submit').click(function(){
 
@@ -31,13 +34,13 @@ $(document).ready(function(){
 		$('#footer').css('bottom', -img_width*scale+150);
 
 		// Set image to default rotation and reflection (for sizing reasons)
-		var initialRotation = img.getRotation();
-		var initialReflection = img.isReflected();
+		initialRotation = img.getRotation();
+		initialReflection = img.isReflected();
 		$('#target').attr("src", img.setRotation(0, false));
 
 		// Reset object to initial rot and ref
 		img.setRotation(initialRotation, initialReflection);
-
+		console.log(initialReflection + " " + img.isReflected());
 		if (initialReflection){
 			$('#target').css({transform: 'scaleX(-1)'}); //reflect if img reflected
 			$("#ref").attr('checked', 'true');
@@ -60,9 +63,11 @@ $(document).ready(function(){
 		if (img != null) {
 			if (this.checked) {
 				$('#target').css({transform: 'scaleX(-1)'});
+				ref = true;
 			}
 			else {
 				$('#target').css({transform: 'scaleX(1)'});
+				ref = false;
 			}
 			$('#output').val(img.setRotation(deg, ref));
 		}
