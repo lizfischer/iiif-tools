@@ -3,8 +3,12 @@ html {
   box-sizing: border-box;
 }
 
+#lang, #id{
+    width: 5em;
+}
+
 .jcrop-holder, #output-wrapper{
-	display: inline-block
+	display: inline-block;
 }
 
 .rectangle{

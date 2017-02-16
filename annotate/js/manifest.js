@@ -19,7 +19,7 @@ var getImages = function(iiifManifest){
 			for (i in canvases){
 				var url = canvases[i]["images"][0]["resource"]["@id"];
 				currentImage = new IIIFimg(url);
-				console.log(currentImage);
+                var id = canvases[i]["@id"];
 				var width = currentImage.getWidth();
 				var height = currentImage.getHeight();
 				var num = currentImage.getIdentifier().split('_')[1];
@@ -28,7 +28,8 @@ var getImages = function(iiifManifest){
 					url:smaller,
 					name:num,
 					w: width,
-					h: height
+					h: height,
+                    id: id
 				});
 			}
 			imageURLs = images;

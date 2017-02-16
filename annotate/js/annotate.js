@@ -7,7 +7,9 @@ $(document).ready(function(){
 	var imageArray;
 	var currentIndex;
 	var col = null;
-
+    var currentID = 0;
+    var firstNote = 0;
+    var output = "";
 	/* When URL submitted... */
 	$('#submit').click(function(){
 
@@ -33,30 +35,24 @@ $(document).ready(function(){
 
 	});
 
+    $("#annotate").click(function(){
+        getAnnotation();
+    });
 
 	$("#list").change(updateImage);
-
-
+    $("#output").change(function(){
+        output=$("#output").val();
+    })
+    $("#id").change(function(){
+        currentID=$("#id").val();
+    })
 	/** CANVAS **/
 
 	function clearURL(){
 		$('#output').val("");
 	}
 
-	/* Get the new URL from JCrop coordinates */
-	function getURL(c){
-		var oldURL = $('#target').attr('src');
-		var split = oldURL.split('/');
-		var sc = scaleCoords(c, oldURL); // scaled coordinates
-		var tc = translateCoords(sc, oldURL);
-
-		var coordStr = tc.x.toString() + ","+ tc.y.toString()+","+tc.w.toString()+","+tc.h.toString();
-		split[split.length - 4] = coordStr;
-		var newURL = split.join("/");
-		$('#output').val(newURL);
-	}
-
-	function updateImage(){
+    function updateImage(){
 		// If there was an instance of jcrop, start fresh it
 		if (jcrop_api != null){
 			jcrop_api.destroy();
@@ -72,8 +68,6 @@ $(document).ready(function(){
 		// Start jcrop
 		$('#target').Jcrop({
 			boxHeight:700,
-			onSelect: getURL,
-			onChange: clearURL,
 			allowSelect: true,
 			allowMove: true,
 			allowResize: true
@@ -81,9 +75,49 @@ $(document).ready(function(){
 			jcrop_api=this;
 		});
 	}
+    
+    /* Get text from annotation box and produce output.*/
+    
+    function getAnnotation(){
+        var lang = $("#lang").val();
+        var annotation = $("#annotation").val();
+        var canvas = imageArray[currentIndex]["id"];
+
+        // Get and scale bounding box
+        var sc = scaleCoords(jcrop_api.tellSelect()); // scaled coordinates
+		var tc = translateCoords(sc);
+		var xywh = tc.x.toString() + ","+ tc.y.toString()+","+tc.w.toString()+","+tc.h.toString();
+        
+        // Generate IDs
+        var id1 = currentID++;
+        var id2 = currentID++;
+        
+        $("#id").val(currentID);
+        
+        // Concat
+        if (firstNote !== 0){
+            output += ",\n"
+        } else firstNote = 1;
+        output += "{\n\
+    \"@id\": \""+id1+"\",\n\
+    \"@type\": \"oa:Annotation\",\n\
+    \"motivation\": \"sc:painting\",\n\
+    \"resource\": {\n\
+        \"@id\": \""+id2+"\",\n\
+        \"@type\": \"cnt:ContentAsText\",\n\
+        \"format\": \"text/html\",\n\
+        \"chars\": \""+annotation+"\",\n\
+        \"language\": \""+lang+"\"\n\
+    \},\n\
+    \"on\": \""+canvas+"#"+xywh+"\"\n\
+\}"
+        $("#output").val(output);
+        
+    }
 
 	/* Adjusts for IIIF image scaling (pct:40, for example) */
-	function scaleCoords(c, url){
+	function scaleCoords(c){
+        var url = $("#target").attr("src");
 		var x = c.x;
 		var y = c.y;
 		var w = c.w;
@@ -107,13 +141,14 @@ $(document).ready(function(){
 	}
 
 	/* Moves box over/down already cropped URLs. Takes scaled coordinates */
-	function translateCoords(sc, oldURL){
+	function translateCoords(sc){
+        var url = $("#target").attr("src");
 		var x = parseInt(sc.x);
 		var y = parseInt(sc.y);
 		var w = parseInt(sc.w);
 		var h = parseInt(sc.h);
 
-		var oldCoords = oldURL.split('/')[oldURL.split('/').length - 4]
+		var oldCoords = url.split('/')[url.split('/').length - 4]
 
 		if (oldCoords != "full"){
 			var split = oldCoords.split(',');
@@ -139,7 +174,6 @@ $(document).ready(function(){
 	var clipboard = new Clipboard('.btn');
 
 	clipboard.on('success', function(e) {
-		console.log('Success');
 		$('#copy-tip-text').text('Copied!');
 		$('#copy-tip-text').fadeIn(300).delay(1000).fadeOut(300);
 	});
