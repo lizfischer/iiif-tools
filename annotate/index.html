@@ -5,7 +5,7 @@ github.com/lizfischer -->
 <head>
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 
-	<title>IIIF Crop</title>
+	<title>IIIF Annotate</title>
 
 	<link rel="stylesheet" href="css/jquery.Jcrop.min.css"> <!-- required for jcrop to work right! -->
 	<link rel="stylesheet" href="css/main.css">
@@ -13,17 +13,15 @@ github.com/lizfischer -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/iiif-manipulate.js"></script>
-    <script type="text/javascript" src="js/manifest.js"></script>
+	<script type="text/javascript" src="js/facade.min.js"></script>
+	<script type="text/javascript" src="js/iiif-manipulate.js"></script>
+	<script type="text/javascript" src="js/manifest.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<script type="text/javascript" src="js/jquery.Jcrop.min.js"></script>
-	<script type="text/javascript" src="js/clipboard.min.js"></script>
-	<script type="text/javascript" src="js/common.js"></script>
 	<script type="text/javascript" src="js/annotate.js"></script>
 </head>
 <body>
 	<div id="container">
-		<h1>IIIF Image Annotater</h1>
+		<h1>IIIF Image Annotator</h1>
 		<p>A simple little tool to annotate <a href="http://www.iiif.io" target="_blank">IIIF</a> images. Input a valid IIIF manifest URL.</p>
 
 		<div id="fields">
@@ -32,12 +30,17 @@ github.com/lizfischer -->
 			<button type="button" id="submit">Load</button>
 
 			<label for="output">Image Number:</label>
-            <select id="list"></select>
-			
+			<select id="list"></select>
+
+			<label for="drawCol">Draw Column</label>
+			<input type="checkbox" id="drawCol" value="columnMode">
+			<label id="dim"></label>
 		</div>
 
 		<!-- img placeholder -->
-		<img src="" id="target">
+		<div id="canvas">
+			<img src="" id="target"/>
+		</div>
 	</div>
 
 	<div id="footer">
