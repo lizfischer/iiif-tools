@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- Liz Fischer, 2017
+github.com/lizfischer -->
+<html lang="en">
+<head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+
+	<title>IIIF Annotate</title>
+
+	<link rel="stylesheet" href="css/jquery.Jcrop.min.css"> <!-- required for jcrop to work right! -->
+	<link rel="stylesheet" href="css/main.css">
+	<link rel=stylesheet href="css/colors.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/iiif-manipulate.js"></script>
+	<script type="text/javascript" src="js/manifest.js"></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jquery.Jcrop.min.js"></script>
+	<script type="text/javascript" src="js/clipboard.min.js"></script>
+	<script type="text/javascript" src="js/annotate.js"></script>
+</head>
+<body>
+	<div id="container">
+		<h1>IIIF Image Annotator</h1>
+		<p>A simple little tool to annotate <a href="http://www.iiif.io" target="_blank">IIIF</a> images. Input a valid IIIF manifest URL.</p>
+
+		<div id="fields">
+			<label for="URL">Input Manifest:</label>
+			<input type="text" id="URL" name="URL">
+			<button type="button" id="submit">Load</button>
+
+			<label for="list">Image Number:</label>
+			<select id="list"></select>
+            <br>
+            <label for="annotation">Text</label>
+            <input type="text" name="annotation" id="annotation">
+            <label for="lang">Lang</label>
+            <select id="lang"><option value="eng">English</option><option value="ang">Old English</option><option value="lat">Latin</option></select>
+            <label for="id">First ID</label>
+            <input type="text" name="id" id="id">
+            <button type="button" id="annotate">Save</button>
+
+		</div>
+
+		<!-- img placeholder -->
+		<img style="display:none" src="" id="target">
+        
+        
+			<div id="output-wrapper">
+				<label for="output">Output:</label>
+                <textarea rows=50 cols=40 name="output" id="output"></textarea>
+				<div class="tooltip-wrap" id="copy-tip">
+					<button class="btn" id="copy" data-clipboard-target="#output">
+						<img src="img/clippy.svg" alt="Copy to clipboard">
+					</button>
+					<div class="tooltip" id="copy-tip-text">Copied!</div>
+				</div>
+			</div>
+
+	</div>
+
+	<img style="display:none" src="" id="target">
+
+</body>
+</html>
