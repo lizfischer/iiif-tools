@@ -3,14 +3,8 @@ html {
   box-sizing: border-box;
 }
 
-#canvas{
-	display: inline-block;
-	position: relative;
-}
-
-img {
-	z-index: -1;
-	position: relative;
+.jcrop-holder, #output-wrapper{
+	display: inline-block
 }
 
 .rectangle{

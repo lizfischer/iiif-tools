@@ -3,12 +3,15 @@ $(document).ready(function(){
 	document.getElementById("URL").value = "https://purl.stanford.edu/rs424xq9888/iiif/manifest.json"
 
 	/** GLOBALS **/
+	var jcrop_api = null;
 	var imageArray;
-	var currentImage;
+	var currentIndex;
 	var col = null;
 
 	/* When URL submitted... */
 	$('#submit').click(function(){
+
+
 		// Remove img styling-- clears out the 'display: none' when first image is loaded.
 		$('#target').removeAttr('style');
 
@@ -26,7 +29,6 @@ $(document).ready(function(){
 			opt.value = i;
 			select.add(opt);
 		}
-		console.log(imageArray);
 		updateImage();
 
 	});
@@ -34,84 +36,116 @@ $(document).ready(function(){
 
 	$("#list").change(updateImage);
 
-	function updateDimensions(){
-		console.log("updating dim");
-		var x = Math.floor($("#column").position().left)*(100/imgPct);
-		var y = Math.floor($("#column").position().top)*(100/imgPct);
-		var w = Math.floor($("#column").width())*(100/imgPct);
-		var h = Math.floor($("#column").height())*(100/imgPct);
-
-		$("#dim").text(x+","+y+","+w+","+h);
-	}
 
 	/** CANVAS **/
 
+	function clearURL(){
+		$('#output').val("");
+	}
+
+	/* Get the new URL from JCrop coordinates */
+	function getURL(c){
+		var oldURL = $('#target').attr('src');
+		var split = oldURL.split('/');
+		var sc = scaleCoords(c, oldURL); // scaled coordinates
+		var tc = translateCoords(sc, oldURL);
+
+		var coordStr = tc.x.toString() + ","+ tc.y.toString()+","+tc.w.toString()+","+tc.h.toString();
+		split[split.length - 4] = coordStr;
+		var newURL = split.join("/");
+		$('#output').val(newURL);
+	}
+
 	function updateImage(){
-		// clear rectangles & lines
-		clearRect();
+		// If there was an instance of jcrop, start fresh it
+		if (jcrop_api != null){
+			jcrop_api.destroy();
+		}
 
 		// set image
-		currentImage = $('#list').val();
-		var url = imageArray[currentImage]["url"];
-	   $('#target').attr("src", url);
+		currentIndex = $('#list').val();
+		var url = imageArray[currentIndex]["url"];
+		$('#target').removeAttr('style');
+
+		$('#target').attr("src", url);
+
+		// Start jcrop
+		$('#target').Jcrop({
+			boxHeight:700,
+			onSelect: getURL,
+			onChange: clearURL,
+			allowSelect: true,
+			allowMove: true,
+			allowResize: true
+		}, function(){
+			jcrop_api=this;
+		});
 	}
 
-	function clearRect(){
-		if (col !== null) col.remove();
-		col = null;
+	/* Adjusts for IIIF image scaling (pct:40, for example) */
+	function scaleCoords(c, url){
+		var x = c.x;
+		var y = c.y;
+		var w = c.w;
+		var h = c.h;
+		var split = url.split('/');
+		var pctStr = split[split.length-3];
+		if (pctStr != "full"){
+			var pct = pctStr.split(':')[1];
+			var scale = 100/pct;
+			x *= scale;
+			y *= scale;
+			w *= scale;
+			h *= scale;
+		}
+		x = Math.round(x);
+		y = Math.round(y);
+		w = Math.round(w);
+		h = Math.round(h);
+
+		return {'x':x, 'y':y, 'w':w, 'h':h}
 	}
 
-	draw(document.getElementById('canvas'));
-	function draw(canvas) {
-		function setMousePosition(e) {
-			var ev = e || window.event; //Moz || IE
-			if (ev.pageX) { //Moz
-				mouse.x = ev.pageX - $("#canvas").offset().left;
-				mouse.y = ev.pageY - $("#canvas").offset().top;
-			} else if (ev.clientX) { //IE
-				mouse.x = ev.clientX + document.body.scrollLeft;
-				mouse.y = ev.clientY + document.body.scrollTop;
-			}
-		};
-		var mouse = {
-			x: 0,
-			y: 0,
-			startX: 0,
-			startY: 0
-		};
-		var element = null;
-		canvas.onmousemove = function (e) {
-			setMousePosition(e);
-			if (element !== null) {
-				element.style.width = Math.abs(mouse.x - mouse.startX) + 'px';
-				element.style.height = Math.abs(mouse.y - mouse.startY) + 'px';
-				element.style.left = (mouse.x - mouse.startX < 0) ? mouse.x + 'px' : mouse.startX + 'px';
-				element.style.top = (mouse.y - mouse.startY < 0) ? mouse.y + 'px' : mouse.startY + 'px';
-			}
+	/* Moves box over/down already cropped URLs. Takes scaled coordinates */
+	function translateCoords(sc, oldURL){
+		var x = parseInt(sc.x);
+		var y = parseInt(sc.y);
+		var w = parseInt(sc.w);
+		var h = parseInt(sc.h);
+
+		var oldCoords = oldURL.split('/')[oldURL.split('/').length - 4]
+
+		if (oldCoords != "full"){
+			var split = oldCoords.split(',');
+			x += parseInt(split[0]);
+			y += parseInt(split[1]);
 		}
+		return {'x':x, 'y':y, 'w':w, 'h':h}
+	}
 
 
-		canvas.onclick = function (e) {
-			if (document.getElementById("drawCol").checked == true){
-				if (element !== null && col == null) { //ending column draw
-					col = element;
-					updateDimensions();
-					element = null;
-					canvas.style.cursor = "default";
-				} else{	// starting column draw
-					clearRect();
-					mouse.startX = mouse.x;
-					mouse.startY = mouse.y;
-					element = document.createElement('div');
-					element.className = 'rectangle'
-					element.id = 'column';
-					element.style.left = mouse.x + 'px';
-					element.style.top = mouse.y + 'px';
-					canvas.appendChild(element)
-					canvas.style.cursor = "crosshair";
-				}
-			}
+
+
+	/* Trigger URL submit with ENTER */
+	$("#URL").keyup(function(event){
+		if(event.keyCode == 13){
+			$("#submit").click();
 		}
-	};
+	});
 
+
+	/** CLIPBOARD **/
+
+	var clipboard = new Clipboard('.btn');
+
+	clipboard.on('success', function(e) {
+		console.log('Success');
+		$('#copy-tip-text').text('Copied!');
+		$('#copy-tip-text').fadeIn(300).delay(1000).fadeOut(300);
+	});
+
+	clipboard.on('error', function(e) {
+		$('#copy-tip-text').text('Ctrl+C to copy');
+		$('#copy-tip-text').fadeIn(300).delay(1000).fadeOut(300);
+	});
 });

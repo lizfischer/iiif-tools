@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Liz Fischer, 2016
+<!-- Liz Fischer, 2017
 github.com/lizfischer -->
 <html lang="en">
 <head>
@@ -13,10 +13,11 @@ github.com/lizfischer -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
 	<script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript" src="js/facade.min.js"></script>
 	<script type="text/javascript" src="js/iiif-manipulate.js"></script>
 	<script type="text/javascript" src="js/manifest.js"></script>
 	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jquery.Jcrop.min.js"></script>
+	<script type="text/javascript" src="js/clipboard.min.js"></script>
 	<script type="text/javascript" src="js/annotate.js"></script>
 </head>
 <body>
@@ -29,22 +30,32 @@ github.com/lizfischer -->
 			<input type="text" id="URL" name="URL">
 			<button type="button" id="submit">Load</button>
 
-			<label for="output">Image Number:</label>
+			<label for="list">Image Number:</label>
 			<select id="list"></select>
 
-			<label for="drawCol">Draw Column</label>
-			<input type="checkbox" id="drawCol" value="columnMode">
-			<label id="dim"></label>
+
+			<div id="annotate">
+				<input type="text" name="annotation" id="annotation">
+				<button type="button" id="annotate">Save</button>
+
+				<label for="output">Output:</label>
+				<input type="textarea" name="output" id="output" readonly>
+				<div class="tooltip-wrap" id="copy-tip">
+					<button class="btn" id="copy" data-clipboard-target="#output">
+						<img src="img/clippy.svg" alt="Copy to clipboard">
+					</button>
+					<div class="tooltip" id="copy-tip-text">Copied!</div>
+				</div>
+			</div>
+
+
 		</div>
 
 		<!-- img placeholder -->
-		<div id="canvas">
-			<img src="" id="target"/>
-		</div>
+		<img style="display:none" src="" id="target">
 	</div>
 
-	<div id="footer">
-		<a href="mailto:lizzy.m.fischer@gmail.com" target="_blank">Liz Fischer</a>, 2017.
-	</div>
+	<img style="display:none" src="" id="target">
+
 </body>
 </html>
