@@ -161,10 +161,25 @@ $(document).ready(function(){
 
 
 
-	/* Trigger URL submit with ENTER */
+	/* Trigger buttons with ENTER */
 	$("#URL").keyup(function(event){
 		if(event.keyCode == 13){
 			$("#submit").click();
+		}
+	});
+    $("#annotation").keyup(function(event){
+		if(event.keyCode == 13){
+			$("#annotate").click();
+		}
+	});
+    $("#lang").keyup(function(event){
+		if(event.keyCode == 13){
+			$("#annotate").click();
+		}
+	});
+    $("#id").keyup(function(event){
+		if(event.keyCode == 13){
+			$("#annotate").click();
 		}
 	});
 
