@@ -3,17 +3,19 @@ $(document).ready(function(){
         console.log( "Load was performed." );
     });
 
-    var img;
-    var dragging = false;
-    var deg = 0;
-    var hasMoved = false;
-    var loaded = false;
-    var target     = $('#rotate-target');
-    var mainTarget = $('#mainTarget');
-
-    /* When URL submitted... */
-    $('#submit').click(function(){
-
+	var img;
+	var dragging = false;
+	var deg = 0;
+	var ref = false;
+	var hasMoved = false;
+	var loaded = false;
+	var target     = $('#rotate-target');
+	var mainTarget = $('#mainTarget');
+	var initialRotation;
+	var initialReflection;
+	
+	/* When URL submitted... */
+	$('#submit').click(function(){
         // Clear output box
         $('#output').val('');
         hasMoved = false;
@@ -30,24 +32,24 @@ $(document).ready(function(){
         $('#mainTarget').css('top', 100);
         $('#footer').css('bottom', -img_width*scale+150);
 
-        // Set image to default rotation and reflection (for sizing reasons)
-        var initialRotation = img.getRotation();
-        var initialReflection = img.isReflected();
-        $('#target').attr("src", img.setRotation(0, false));
+		// Set image to default rotation and reflection (for sizing reasons)
+		initialRotation = img.getRotation();
+		initialReflection = img.isReflected();
+		$('#target').attr("src", img.setRotation(0, false));
 
-        // Reset object to initial rot and ref
-        img.setRotation(initialRotation, initialReflection);
-
-        if (initialReflection){
-            $('#target').css({transform: 'scaleX(-1)'}); //reflect if img reflected
-            $("#ref").attr('checked', 'true');
-        } else {
-            $('#target').css({transform: 'scaleX(1)'});
-            $("#ref").removeAttr('checked');
-        }
-
-        deg = initialRotation;
-        mainTarget.css({transform: 'rotate(' + deg + 'deg)'});
+		// Reset object to initial rot and ref
+		img.setRotation(initialRotation, initialReflection);
+		if (initialReflection){
+			$('#target').css({transform: 'scaleX(-1)'}); //reflect if img reflected
+			$("#ref").attr('checked', 'true');
+		} else {
+			$('#target').css({transform: 'scaleX(1)'});
+			$("#ref").removeAttr('checked');
+		}
+		
+		deg = initialRotation;
+		ref = initialReflection;
+		mainTarget.css({transform: 'rotate(' + deg + 'deg)'});
 
         // Display image
         $('#rotate-target').show();
@@ -55,18 +57,20 @@ $(document).ready(function(){
         loaded = true;
     });
 
-    /* Toggle Reflection */
-    $('#ref').change(function(){
-        if (img != null) {
-            if (this.checked) {
-                $('#target').css({transform: 'scaleX(-1)'});
-            }
-            else {
-                $('#target').css({transform: 'scaleX(1)'});
-            }
-            $('#output').val(img.setRotation(deg, ref));
-        }
-    });
+	/* Toggle Reflection */
+	$('#ref').change(function(){
+		if (img != null) {
+			if (this.checked) {
+				$('#target').css({transform: 'scaleX(-1)'});
+				ref = true;
+			}
+			else {
+				$('#target').css({transform: 'scaleX(1)'});
+				ref = false;
+			}
+			$('#output').val(img.setRotation(deg, ref));
+		}
+	});
 
     var elOfs = mainTarget.offset();
     var cent  = {X: mainTarget.width()/2, Y: mainTarget.height()/2};
