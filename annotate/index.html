@@ -32,24 +32,25 @@ github.com/lizfischer -->
 
 			<label for="list">Image Number:</label>
 			<select id="list"></select>
-            <br>
-            <label for="annotation">Text</label>
-            <input type="text" name="annotation" id="annotation">
-            <label for="lang">Lang</label>
-            <select id="lang"><option value="eng">English</option><option value="ang">Old English</option><option value="lat">Latin</option></select>
-            <label for="id">First ID</label>
-            <input type="text" name="id" id="id">
-            <button type="button" id="annotate">Save</button>
+			<br>
+			<label for="annotation">Text</label>
+			<input type="text" name="annotation" id="annotation">
+			<label for="lang">Lang</label>
+			<select id="lang"><option value="eng">English</option><option value="ang">Old English</option><option value="lat">Latin</option></select>
+			<label for="id">First ID</label>
+			<input type="text" name="id" id="id">
+			<button type="button" id="annotate">Save</button>
 
 		</div>
 
 		<!-- img placeholder -->
 		<img style="display:none" src="" id="target">
-        
-        
+
+
 			<div id="output-wrapper">
+
 				<label for="output">Output:</label>
-                <textarea rows=50 cols=40 name="output" id="output"></textarea>
+				<textarea rows=50 cols=40 name="output" id="output"></textarea>
 				<div class="tooltip-wrap" id="copy-tip">
 					<button class="btn" id="copy" data-clipboard-target="#output">
 						<img src="img/clippy.svg" alt="Copy to clipboard">
