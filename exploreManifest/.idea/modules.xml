@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/iiif-tools.iml" filepath="$PROJECT_DIR$/.idea/iiif-tools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/exploreManifest.iml" filepath="$PROJECT_DIR$/.idea/exploreManifest.iml" />
     </modules>
   </component>
 </project>
