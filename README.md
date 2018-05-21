@@ -10,6 +10,6 @@ Live at http://www.lizmfischer.com/iiif-tools/cropper/ and http://dms-data.stanf
 + 03/19/2016 - Added confirmation to copy button, fixed 'cropped url' box not clearing when a new url is loaded.
 
 ## Rotator
-http://www.lizmfischer.com/iiif-tools/rotate/
+Live at http://www.lizmfischer.com/iiif-tools/rotate/
 ### Changelog
 + 05/21/2018 - Moved hosted version off Stanford server
