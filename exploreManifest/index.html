@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IIIF Manifest Explorer</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="he.js"></script>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <h1>Explore IIIF Manifest</h1>
+    <p>Enter an IIIF manifest URL to see basic info about the object, and a list of images. It might take a while to load
+    once you hit Submit, so be patient!</p>
+    <p>If you want to use an image in the <a href="http://slowlooking.cogapp.com/">Slow Looking app</a>, copy the image
+        info link, not the direct link!</p>
+
+    <input id="url" type="text" name="url"> <input type="submit" value="Submit" onclick="getManifest()">
+
+    <h3>Object info</h3>
+    <div id="head-wrapper">
+        <div id="obj-label"></div>
+        <div id="obj-desc"></div>
+        <div id="obj-attr"></div>
+        <img id="obj-logo"></img>
+        <!--<div id="obj-seealso">See also: </div>-->
+    </div>
+
+    <div id="sequences">
+        <h3>Images</h3>
+        <div id="img-container">
+
+        </div>
+    </div>
+</body>
+</html>
