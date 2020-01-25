@@ -32,7 +32,7 @@
                                     "format": "image/jpeg",
                                     "service": {
                                         "@context": "http://iiif.io/api/image/2/context.json",
-                                        "@id": "https://stacks.stanford.edu/image/iiif/vb856kp8798%2F002II_167_R_TC_46",
+                                        "@id": "https://stacks.stanford.edu/image/iiif/vb856kp8798%2F002II_167_R_TC_46#xywh=1925,6187,607,1475",
                                         "profile": "http://iiif.io/api/image/2/level2"
                                     },
                                     "height": 9368,
