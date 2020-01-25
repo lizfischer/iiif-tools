@@ -27,7 +27,7 @@
                                 "@type": "oa:Annotation",
                                 "motivation": "sc:painting",
                                 "resource": {
-                                    "@id": "https://stacks.stanford.edu/image/iiif/vb856kp8798%2F002II_167_R_TC_46/full/full/0/default.jpg#xywh=1925,6187,607,1475",
+                                    "@id": "https://stacks.stanford.edu/image/iiif/vb856kp8798%2F002II_167_R_TC_46/1925,6187,607,1475/full/0/default.jpg",
                                     "@type": "dctypes:Image",
                                     "format": "image/jpeg",
                                     "service": {
