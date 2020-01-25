@@ -23,22 +23,28 @@
                         "images": [
                             {
                                 "@context": "http://iiif.io/api/presentation/2/context.json",
-                                "@id": "http://f37ac772-3cfe-4c59-a3b0-2906e823f9ca",
+                                "@id": "http://example.org/iiif/book1/annotation/anno1",
                                 "@type": "oa:Annotation",
                                 "motivation": "sc:painting",
                                 "resource": {
-                                    "@id": "https://stacks.stanford.edu/image/iiif/vb856kp8798%2F002II_167_R_TC_46/full/full/0/default.jpg#xywh=1925,6187,607,1475",
-                                    "@type": "dctypes:Image",
-                                    "format": "image/jpeg",
-                                    "service": {
-                                        "@context": "http://iiif.io/api/image/2/context.json",
-                                        "@id": "https://stacks.stanford.edu/image/iiif/vb856kp8798%2F002II_167_R_TC_46",
-                                        "profile": "http://iiif.io/api/image/2/level2"
+                                    "@id": "https://stacks.stanford.edu/image/iiif/vb856kp8798%2F002II_167_R_TC_46/1925,6187,607,1475/full/0/default.jpg",
+                                    "@type": "oa:SpecificResource",
+                                    "full": {
+                                        "@id": "https://stacks.stanford.edu/image/iiif/vb856kp8798%2F002II_167_R_TC_46/full/full/0/default.jpg",
+                                        "@type": "dctypes:Image",
+                                        "service": {
+                                            "@context": "http://iiif.io/api/image/2/context.json",
+                                            "@id": "http://example.org/iiif/book1-page1",
+                                            "profile": "http://iiif.io/api/image/2/level2.json"
+                                        }
                                     },
-                                    "height": 9368,
-                                    "width": 5878
+                                    "selector": {
+                                        "@context": "http://iiif.io/api/annex/openannotation/context.json",
+                                        "@type": "iiif:ImageApiSelector",
+                                        "region": "1925,6187,607,1475"
+                                    }
                                 },
-                                "on": "http://363f3718-d662-4d6b-8007-67614e28b5a3"
+                                "on": "http://www.example.org/iiif/book1/canvas/p1#xywh=0,0,600,900"
                             }
                         ],
                         "related": ""
