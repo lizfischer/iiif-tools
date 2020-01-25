@@ -1,0 +1,49 @@
+{
+        "@context": "http://iiif.io/api/presentation/2/context.json",
+        "@id": "http://ea17334d-0bbe-4e2a-918e-628eaa66f63c",
+        "@type": "sc:Manifest",
+        "label": "Collage Test",
+        "sequences": [
+            {
+                "@id": "http://db7cfa97-4a90-4919-8b07-42d64566c614",
+                "@type": "sc:Sequence",
+                "label": [
+                    {
+                        "@value": "Normal Sequence",
+                        "@language": "en"
+                    }
+                ],
+                "canvases": [
+                    {
+                        "@id": "http://363f3718-d662-4d6b-8007-67614e28b5a3",
+                        "@type": "sc:Canvas",
+                        "label": "Empty canvas",
+                        "height": 9368,
+                        "width": 5878,
+                        "images": [
+                            {
+                                "@context": "http://iiif.io/api/presentation/2/context.json",
+                                "@id": "http://f37ac772-3cfe-4c59-a3b0-2906e823f9ca",
+                                "@type": "oa:Annotation",
+                                "motivation": "sc:painting",
+                                "resource": {
+                                    "@id": "https://stacks.stanford.edu/image/iiif/vb856kp8798%2F002II_167_R_TC_46/full/full/0/default.jpg#xywh=1925,6187,607,1475",
+                                    "@type": "dctypes:Image",
+                                    "format": "image/jpeg",
+                                    "service": {
+                                        "@context": "http://iiif.io/api/image/2/context.json",
+                                        "@id": "https://stacks.stanford.edu/image/iiif/vb856kp8798%2F002II_167_R_TC_46",
+                                        "profile": "http://iiif.io/api/image/2/level2"
+                                    },
+                                    "height": 9368,
+                                    "width": 5878
+                                },
+                                "on": "http://363f3718-d662-4d6b-8007-67614e28b5a3"
+                            }
+                        ],
+                        "related": ""
+                    }
+                ]
+            }
+        ]
+    }
