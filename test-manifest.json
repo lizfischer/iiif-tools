@@ -1,0 +1,55 @@
+{
+        "@context": "http://iiif.io/api/presentation/2/context.json",
+        "@id": "http://ea17334d-0bbe-4e2a-918e-628eaa66f63c",
+        "@type": "sc:Manifest",
+        "label": "Collage Test",
+        "sequences": [
+            {
+                "@id": "http://db7cfa97-4a90-4919-8b07-42d64566c614",
+                "@type": "sc:Sequence",
+                "label": [
+                    {
+                        "@value": "Normal Sequence",
+                        "@language": "en"
+                    }
+                ],
+                "canvases": [
+                    {
+                        "@id": "http://363f3718-d662-4d6b-8007-67614e28b5a3",
+                        "@type": "sc:Canvas",
+                        "label": "Empty canvas",
+                        "height": 9368,
+                        "width": 5878,
+                        "images": [
+                            {
+                                "@context": "http://iiif.io/api/presentation/2/context.json",
+                                "@id": "http://example.org/iiif/book1/annotation/anno1",
+                                "@type": "oa:Annotation",
+                                "motivation": "sc:painting",
+                                "resource": {
+                                    "@id": "https://stacks.stanford.edu/image/iiif/vb856kp8798%2F002II_167_R_TC_46/1925,6187,607,1475/full/0/default.jpg",
+                                    "@type": "oa:SpecificResource",
+                                    "full": {
+                                        "@id": "https://stacks.stanford.edu/image/iiif/vb856kp8798%2F002II_167_R_TC_46/full/full/0/default.jpg",
+                                        "@type": "dctypes:Image",
+                                        "service": {
+                                            "@context": "http://iiif.io/api/image/2/context.json",
+                                            "@id": "http://example.org/iiif/book1-page1",
+                                            "profile": "http://iiif.io/api/image/2/level2.json"
+                                        }
+                                    },
+                                    "selector": {
+                                        "@context": "http://iiif.io/api/annex/openannotation/context.json",
+                                        "@type": "iiif:ImageApiSelector",
+                                        "region": "1925,6187,607,1475"
+                                    }
+                                },
+                                "on": "http://363f3718-d662-4d6b-8007-67614e28b5a3"
+                            }
+                        ],
+                        "related": ""
+                    }
+                ]
+            }
+        ]
+    }
