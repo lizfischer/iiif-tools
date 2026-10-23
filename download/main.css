@@ -1,16 +1,142 @@
-body {
-	font-family: sans-serif;
-	width: 80%;
-	margin: auto;
+h1,h2,h3,h4,h5,h6,p,li {
+    color: #404040;
+}
+p.larger-text{
+    font-size: 1.2rem;
+}
+nav {
+    front-weight: bold;
+    background:rgb(245, 245, 245);
+    height: 100px;
+}
+.navbar {
+    padding: .5rem 5rem !important; 
+}
+.navbar-brand{
+    font-size: xx-large !important;
+}
+.nav-item {
+    padding: 0 10px;
+    font-size: large;
+}
+ul.navbar-nav {
+    text-align: right;
+    justify-content: flex-end;
+}
+nav a {
+    color: #404040;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+.navbar-collapse {
+    background:rgb(245, 245, 245);
+
 }
 
-h1 {
-	text-align: center;
+
+.content {
+    margin-top: 120px;
 }
 
-#size {
-	display: block;
+/* Front page banner */
+#banner {
+    position: relative;
 }
-#size input{
-	width: 3em;
+
+#banner > img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#banner > .header {
+    width: 80% !important;
+    position: relative;
+    top: min(25vw, 250px);
+    background-color: white;
+    padding: 50px 50px !important;
+
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.header h1 {
+
+    text-align: center;
+    font-size: 50px;
+    font-weight: 800;
+    font-family: "Open Sans";
+    margin-bottom: 50px;
+}
+.avatar {
+    left: 50%;
+    border-radius: 50%;
+    width: 120px;
+    margin-bottom: 25px;
+}
+
+
+
+/* Project cards */
+.card {
+    //height: 20rem;
+    margin: 10px;
+    max-width: 48%;
+}
+.card > a:hover {
+    text-decoration: none;
+}
+.card:hover {
+    background-color: #f5f5f5;
+}
+.card.inactive:hover {
+    background-color: inherit;
+}
+.card.inactive > a:hover {
+    cursor: default;
+}
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.label {
+    font-weight: bold;
+}
+.caption {
+    margin: auto;
+    text-align: center;
+    font-size: small;
+    color: #777777;
+}
+
+
+#social {
+    font-size: 2em;
+    text-align: center;
+}
+
+.breadcrumb {
+    background-color: white !important;
+}
+
+ol.breadcrumb {
+    padding-left: 0;
+}
+
+.breadcrumb a {
+    color: rgba(0, 106, 188, 0.77);
+}
+
+.content {
+    margin-bottom: 100px;
+}
+
+
+
+#ad-wrapper {
+    margin-top: 75px;
 }

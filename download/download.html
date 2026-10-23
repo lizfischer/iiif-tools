@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <script src="../../static/iiif-tools/jszip.min.js"></script>
+    <script src="../../static/iiif-tools/jszip-utils.min.js"></script>
+    <script src="../../static/iiif-tools/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="../../static/iiif-tools/download.js"></script>
+{% endblock %}
+
+
+{% block content %}
+    <div aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a href="/projects">Projects</a></li>
+          <li class="breadcrumb-item"><a href="/iiif-tools">IIIF Tools</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+      </ol>
+    </div>
+
+    <div class="header container">
+        <h1>{{ title }}</h1>
+    </div>
+
+    <p>Input a <a href="https://iiif.io/">IIIF</a> manifest link to and the desired image size to download a ZIP or PDF of
+        all that manifest's images.</p>
+    <p>Please note that this tool runs entirely in your browser, so you need to keep the tab active while your download is in progress. For large requests, it may take <i>several</i> minutes. I hope to change this soon, but in the meantime use it as an opportunity to get up, stretch, and have a drink of water.</p>
+    {% include "kofi.html" %}
+
+    <label>
+        Manifest URL:
+        <input id="url" type="text" value="">
+    </label>
+    <label id="size">
+        Size:
+        <select id="sizeType">
+            <option value="full">full</option>
+            <option value="pct">Percent</option>
+            <option value="max">Max dimensions</option>
+        </select>
+
+        <label id="pct" style="display: none"><input type="text"></label>
+        <label id="width" style="display: none">Max width: <input type="text"></label>
+        <label id="height" style="display: none">Max height: <input type="text"></label>
+    </label>
+    <label>
+        Output format:
+        <select id="outputFormat">
+            <option value="zip">ZIP</option>
+            <option value="pdf">PDF</option>
+        </select>
+    </label>
+    <button id="submit">Submit</button>
+
+    <div class="progress hide" id="progress_bar">
+        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+        </div>
+    </div>
+
+    <p class="hide" id="result"></p>
+
+{#    <div id="ad-wrapper">#}
+{#        {%  include "ad.html" %}#}
+{#        <!-- Downloader -->#}
+{#        <ins class="adsbygoogle"#}
+{#             style="display:inline-block;width:728px;height:90px"#}
+{#             data-ad-client="ca-pub-7837927019784551"#}
+{#             data-ad-slot="1836683168">#}
+{#        </ins>#}
+{#        <script>#}
+{#             (adsbygoogle = window.adsbygoogle || []).push({});#}
+{#        </script>#}
+{#    </div>#}
+{% endblock %}
